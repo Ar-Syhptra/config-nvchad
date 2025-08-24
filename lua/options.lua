@@ -1,6 +1,10 @@
 require "nvchad.options"
 
--- add yours here!
+-- Add yours here!
+vim.o.mouse = ""
 
--- local o = vim.o
--- o.cursorlineopt ='both' -- to enable cursorline!
+-- Mengaktifkan cursorline
+vim.o.cursorline = true
+
+-- Mengatur opsi cursorline (opsional)
+vim.o.cursorlineopt = 'both'

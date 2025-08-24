@@ -21,4 +21,16 @@ M.base46 = {
 --      }
 --}
 
+M.mason = {
+  ensure_installed = {
+    "css-lsp",
+    "emmet-language-server",
+    "html-lsp",
+    "intelephense",
+    "lua-language-server",
+    "tailwindcss-language-server",
+    "typescript-language-server",
+  },
+}
+
 return M
