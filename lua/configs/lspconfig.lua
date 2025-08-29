@@ -1,31 +1,22 @@
+-- Import default configurations
 require("nvchad.configs.lspconfig").defaults()
 
-local lang = { "html", "cssls", "ts_ls", "lua_ls", "intelephense", "tailwindcss", "emmet_language_server" }
-
-vim.lsp.enable(lang)
-
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local capabilities = require("nvchad.configs.lspconfig").capabilities
-
+-- Define LSP servers and their configurations
 local servers = {
   html = {
     filetypes = { "html", "blade" },
   },
-
   cssls = {},
-
-  ts_ls = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-
+  ts_ls = {
+    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+  },
   lua_ls = {},
-
   intelephense = {
     filetypes = { "php", "blade" },
   },
-
   tailwindcss = {
     filetypes = { "html", "css", "javascript", "typescript", "blade", "php" },
   },
-
   emmet_language_server = {
     filetypes = {
       "astro",
@@ -49,15 +40,19 @@ local servers = {
   },
 }
 
--- Loop untuk menerapkan konfigurasi ke setiap server secara otomatis
-for server, config in pairs(servers) do
-  -- Panggil lspconfig.setup untuk setiap server
-  require("lspconfig")[server].setup {
+-- Get shared configurations
+local lspconfig = require "lspconfig"
+local nvchad_config = require "nvchad.configs.lspconfig"
+local on_attach = nvchad_config.on_attach
+local capabilities = nvchad_config.capabilities
+
+-- Enable LSP servers
+vim.lsp.enable(vim.tbl_keys(servers))
+
+-- Setup each server with its configuration
+for server_name, config in pairs(servers) do
+  lspconfig[server_name].setup(vim.tbl_extend("force", {
     on_attach = on_attach,
     capabilities = capabilities,
-    settings = config.settings,
-    filetypes = config.filetypes,
-  }
+  }, config))
 end
-
--- read :h vim.lsp.config for changing options of lsp servers
