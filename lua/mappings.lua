@@ -21,12 +21,6 @@ map("n", "wk", "<C-w>k")
 map("n", "wj", "<C-w>j")
 map("n", "wl", "<C-w>l")
 
--- Resize window
-map("n", "<C-S-h>", "<C-w><")
-map("n", "<C-S-l>", "<C-w>>")
-map("n", "<C-S-k>", "<C-w>+")
-map("n", "<C-S-j>", "<C-w>-")
-
 -- Diagnostics
 map("n", "<C-j>", function()
   vim.diagnostic.goto_next()
