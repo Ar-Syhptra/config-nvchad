@@ -6,7 +6,7 @@ local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
-map("t", "<C-\\>", "<C-\\><C-n>")
+map("t", "<Esc><Esc>", "<C-\\><C-n>", { noremap = true, silent = true, desc = "Exit terminal mode" })
 map("n", "<Leader>qq", ":qa!<CR>", { desc = "Quit Neovim" })
 map("n", "<Leader>cg", "<cmd> cd ~/AppData/Local/nvim <cr>", { desc = "Open Neovim config folder" })
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
